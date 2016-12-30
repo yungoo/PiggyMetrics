@@ -12,4 +12,15 @@ server:
 
 security:
   user:
-    password: ${CONFIG_SERVICE_PASSWORD}
+    password: ${CONFIG_SERVICE_PASSWORD:123456}
+
+---
+spring:
+  profiles:
+    include: native
+    active: docker
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: file:///var/lib/config-repo

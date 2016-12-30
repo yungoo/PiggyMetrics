@@ -1,5 +1,51 @@
-spring:
-  data:
-    mongodb:
-      database: piggymetrics
-      port: 0
+#security:
+#  oauth2:
+#    client:
+#      clientId: account-service
+#      clientSecret: a123456
+#      accessTokenUri: http://localhost:5000/uaa/oauth/token
+#      grant-type: client_credentials
+#      scope: server
+#    resource:
+#      user-info-uri: http://localhost:5000/uaa/users/current
+#
+#spring:
+#  data:
+#    mongodb:
+#      host: localhost
+#      port: 25000
+#      username: user
+#      password: m123455
+#      database: piggymetrics
+#  rabbitmq:
+#    host: localhost
+#  sleuth:
+#    scheduled:
+#      enabled: false
+#    sampler:
+#      percentage: 1
+#
+#server:
+#  context-path: /accounts
+#  port: 6001
+#
+#logging:
+#  level:
+#    org.springframework.security: INFO
+#
+#hystrix:
+#  command:
+#    default:
+#      execution:
+#        isolation:
+#          thread:
+#            timeoutInMilliseconds: 10000
+#
+#eureka:
+#  instance:
+#    prefer-ip-address: true
+#    status-page-url-path: /accounts/info
+#    health-check-url-path: /accounts/health
+#  client:
+#    serviceUrl:
+#      defaultZone: http://localhost:8761/eureka/

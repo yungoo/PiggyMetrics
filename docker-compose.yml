@@ -4,6 +4,7 @@ services:
     image: rabbitmq:3-management
     restart: always
     ports:
+      - 5672:5672
       - 15672:15672
     logging:
       options:
@@ -97,7 +98,7 @@ services:
       MONGODB_PASSWORD: $MONGODB_PASSWORD
       STATISTICS_SERVICE_PASSWORD: $STATISTICS_SERVICE_PASSWORD
     image: sqshq/piggymetrics-statistics-service
-    restart: always
+    restart: none
     logging:
       options:
         max-size: "10m"
@@ -143,6 +144,32 @@ services:
     ports:
       - 9000:8080
       - 8989:8989
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "10"
+
+  monitoring-zipkin:
+    environment:
+      CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
+      MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
+    image: sqshq/piggymetrics-monitoring-zipkin
+    restart: always
+    ports:
+      - 9001:8080
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "10"
+
+  monitoring-zipkin-mysql:
+    environment:
+      MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
+      MYSQL_DATABASE: zipkin
+    image: mariadb
+    restart: always
+    ports:
+      - 3306:3306
     logging:
       options:
         max-size: "10m"

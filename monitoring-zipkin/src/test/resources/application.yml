@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    schema: classpath:/mysql.sql
+    driverClassName: org.hsqldb.jdbcDriver
+    url: jdbc:hsqldb:mem:test
+    initialize: true
+    continueOnError: true
+  sleuth:
+    enabled: false
+
+zipkin:
+  storage:
+    type: MYSQL

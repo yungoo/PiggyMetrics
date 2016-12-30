@@ -8,6 +8,8 @@ services:
     build: config
     ports:
       - 8888:8888
+    volumes:
+     - ./config-repo:/var/lib/config-repo
 
   registry:
     build: registry
@@ -57,3 +59,6 @@ services:
 
   monitoring:
     build: monitoring
+
+  monitoring-zipkin:
+    build: monitoring-zipkin
