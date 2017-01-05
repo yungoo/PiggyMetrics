@@ -1,6 +1,19 @@
+debug: false
+
 logging:
   level:
-    org.springframework.security: INFO
+    org.springframework.security: DEBUG
+    com.netflix:
+      eureka: OFF
+      discovery: OFF
+  pattern:
+    console: "%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%5p) %clr(${PID:- }){magenta} %clr(---){faint} %clr([trace=%X{X-Trace-Id:-},span=%X{X-Span-Id:-}]){yellow} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n%wex"
+
+info:
+  component: ${spring.application.name}
+  id: ${instanceId:unknown}
+
+endpoints.shutdown.enabled: true
 
 hystrix:
   command:
@@ -15,13 +28,18 @@ eureka:
     prefer-ip-address: true
   client:
     serviceUrl:
-      defaultZone: http://registry:8761/eureka/
+      defaultZone: http://${REGISTRY_SERVICE_HOST:registry}:${REGISTRY_SERVICE_PORT:8761}/eureka/
 
 security:
   oauth2:
     resource:
-      user-info-uri: http://auth-service:5000/uaa/users/current
+      user-info-uri: http://${AUTH_SERVICE_SERVICE_HOST:auth-service}:${AUTH_SERVICE_SERVICE_PORT:5000}/uaa/users/current
 
 spring:
   rabbitmq:
-    host: rabbitmq
+    host: ${RABBITMQ_SERVICE_SERVICE_HOST:localhost}
+    port: ${RABBITMQ_SERVICE_SERVICE_PORT:5672}
+    username: ${RABBITMQ_SERVICE_USER:root}
+    password: ${RABBITMQ_SERVICE_PASSWORD:123456}
+  sleuth:
+    log.json.enabled: true

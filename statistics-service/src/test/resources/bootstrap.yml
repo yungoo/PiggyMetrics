@@ -1,3 +1,15 @@
 eureka:
   client:
     enabled: false
+
+
+spring:
+  sleuth:
+    stream:
+      enabled: false
+  cloud:
+    bus:
+      enabled: false
+    config:
+      enabled: false
+

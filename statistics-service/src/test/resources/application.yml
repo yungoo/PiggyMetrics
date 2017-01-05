@@ -11,6 +11,9 @@ spring:
     mongodb:
       database: piggymetrics
       port: 0
+  http:
+    converters:
+      preferred-json-mapper: jackson
 
 rates:
   url: http://api.fixer.io

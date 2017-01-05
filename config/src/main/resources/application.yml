@@ -24,3 +24,16 @@ spring:
       server:
         native:
           search-locations: file:///var/lib/config-repo
+
+---
+spring:
+  profiles:
+    active: k8s
+    include: subversion
+  cloud:
+    config:
+      server:
+        svn:
+          uri: ${CONFIG_SERVICE_SVN_URI}
+          username: ${CONFIG_SERVICE_SVN_USER}
+          password: ${CONFIG_SERVICE_SVN_PWD}

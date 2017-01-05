@@ -1,7 +1,7 @@
 spring:
   datasource:
     schema: classpath:/mysql.sql
-    url: jdbc:mysql://monitoring-zipkin-mysql/zipkin
+    url: jdbc:mysql://${MYSQL_MASTER_SERVICE_HOST:monitoring-zipkin-mysql}/zipkin
     username: root
     password: ${MYSQL_ROOT_PASSWORD}
     initialize: true
