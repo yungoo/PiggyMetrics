@@ -16,8 +16,6 @@ spring:
       database: piggymetrics
       port: ${MONGODB_SERVICE_PORT:27017}
   sleuth:
-    scheduled:
-      enabled: false
     sampler:
       percentage: 1
 

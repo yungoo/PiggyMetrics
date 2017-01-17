@@ -1,3 +1,5 @@
+#spring.profiles.active: ${SPRING_PROFILES_ACTIVE:native}
+
 spring:
   cloud:
     config:
@@ -5,7 +7,12 @@ spring:
         native:
           search-locations: classpath:/shared
   profiles:
-     active: native
+    include: native
+  rabbitmq:
+    host: ${RABBITMQ_SERVICE_SERVICE_HOST:rabbitmq}
+    port: ${RABBITMQ_SERVICE_SERVICE_PORT:5672}
+    username: ${RABBITMQ_SERVICE_USER:guest}
+    password: ${RABBITMQ_SERVICE_PASSWORD:guest}
 
 server:
   port: 8888
@@ -15,21 +22,10 @@ security:
     password: ${CONFIG_SERVICE_PASSWORD:123456}
 
 ---
-spring:
-  profiles:
-    include: native
-    active: docker
-  cloud:
-    config:
-      server:
-        native:
-          search-locations: file:///var/lib/config-repo
+spring.profiles: k8s
+spring.profiles.include: subversion
 
----
 spring:
-  profiles:
-    active: k8s
-    include: subversion
   cloud:
     config:
       server:
@@ -37,3 +33,14 @@ spring:
           uri: ${CONFIG_SERVICE_SVN_URI}
           username: ${CONFIG_SERVICE_SVN_USER}
           password: ${CONFIG_SERVICE_SVN_PWD}
+
+---
+spring.profiles: docker
+spring.profiles.include: native
+
+spring:
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: file:///var/lib/config-repo

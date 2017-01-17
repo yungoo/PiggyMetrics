@@ -48,7 +48,5 @@ spring:
           ssl:
             enable: ${SMTP_SSL_ENABLE:true}
   sleuth:
-    scheduled:
-      enabled: false
     sampler:
       percentage: 1

@@ -13,6 +13,7 @@ services:
 
   config:
     environment:
+      SPRING_PROFILES_ACTIVE: docker
       CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
     image: registry.100fen.cn:5000/piggymetrics-config
     restart: always

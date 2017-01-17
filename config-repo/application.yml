@@ -7,7 +7,8 @@ logging:
       eureka: OFF
       discovery: OFF
   pattern:
-    console: "%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%5p) %clr(${PID:- }){magenta} %clr(---){faint} %clr([trace=%X{X-Trace-Id:-},span=%X{X-Span-Id:-}]){yellow} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n%wex"
+    level: "%clr(%5p) %clr([${spring.application.name:},%X{X-B3-TraceId:-},%X{X-B3-SpanId:-},%X{X-Span-Export:-}]){yellow}"
+#    console: "%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%5p) %clr(${PID:- }){magenta} %clr(---){faint} %clr([trace=%X{X-B3-TraceId:-},span=%X{X-B3-SpanId:-}]){yellow} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n%wex"
 
 info:
   component: ${spring.application.name}
@@ -37,9 +38,9 @@ security:
 
 spring:
   rabbitmq:
-    host: ${RABBITMQ_SERVICE_SERVICE_HOST:localhost}
+    host: ${RABBITMQ_SERVICE_SERVICE_HOST:rabbitmq}
     port: ${RABBITMQ_SERVICE_SERVICE_PORT:5672}
-    username: ${RABBITMQ_SERVICE_USER:root}
-    password: ${RABBITMQ_SERVICE_PASSWORD:123456}
+    username: ${RABBITMQ_SERVICE_USER:guest}
+    password: ${RABBITMQ_SERVICE_PASSWORD:guest}
   sleuth:
     log.json.enabled: true

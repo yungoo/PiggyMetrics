@@ -1,7 +1,5 @@
 spring:
   sleuth:
-    scheduled:
-      enabled: false
     sampler:
       percentage: 1
 
